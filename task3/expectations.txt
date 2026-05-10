@@ -1,0 +1,21 @@
+# Sample input CSV (reviews.csv) 
+ review_id,product,review_text 
+ 1,Smart Watch,Battery life is incredible — lasts three full days. 
+ 2,Phone Case,Cheap material, broke after a week. 
+ 3,Wireless Earbuds,Sound quality exceeded my expectations. 
+ 4,Smart Watch,The strap snapped on first use. Very disappointed.
+ 5,Phone Case,Great fit and looks premium for the price.
+ 
+# Expected output 
+{ 'total_reviews': 5,
+  'positive_count': 3, 
+  'negative_count': 2,
+  'sentiment_rate': { 'POSITIVE': 60.0, 'NEGATIVE': 40.0 },
+  'by_product': {
+     'Smart Watch': { 'POSITIVE': 1, 'NEGATIVE': 1 },
+     'Phone Case': { 'POSITIVE': 1, 'NEGATIVE': 1 },
+     'Wireless Earbuds': { 'POSITIVE': 1, 'NEGATIVE': 0 },
+    },
+ 'most_positive_product': 'Wireless Earbuds',
+ 'most_negative_product': 'Phone Case',
+ }

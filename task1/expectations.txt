@@ -1,0 +1,25 @@
+# Sample input CSV (sales.csv)
+
+date,category,product,units_sold,unit_price 
+2024-01-15,Electronics,Wireless Earbuds,42,89.99 
+2024-01-22,Electronics,Smart Watch,18,249.99 
+2024-02-10,Electronics,Wireless Earbuds,37,89.99 
+2024-02-14,Accessories,Phone Case,95,19.99 
+2024-03-05,Accessories,Phone Case,110,19.99 
+2024-03-18,Electronics,Smart Watch,22,249.99
+
+# Expected output
+ { 
+    'Electronics': { 
+        'total_units_sold': 119,
+        'total_revenue': 13998.57,
+        'avg_unit_price': 169.99,
+        'best_month': 'March', 
+     },
+    'Accessories':
+     { 'total_units_sold': 205,
+      'total_revenue': 4097.95,
+      'avg_unit_price': 19.99,
+      'best_month': 'March', 
+    }, 
+}

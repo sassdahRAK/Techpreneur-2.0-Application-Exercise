@@ -1,0 +1,12 @@
+# Example usage 
+texts = [ 'I absolutely love how intuitive this app feels.',
+          'The model kept crashing and lost all my progress.',
+          'Decent performance but the UI needs work.',
+ ]
+results = classify_sentiments(texts)
+print(results)
+  # => ['POSITIVE', 'NEGATIVE', 'NEGATIVE']
+  # On repeated API failure:
+  # raise RuntimeError( 
+  #     "Hugging Face API unavailable after 3 attempts — {url}" 
+  # )
