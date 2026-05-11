@@ -35,3 +35,16 @@
 > single-letter variable names  <br>
 > uncommented logic will be penalised.  <br>
 
+# Record timing
+H:2:20-3:12 Sun: session1 - organize file structure. <br>
+H:8:27-8:35 Mon: session2 - start work on task1 <br>
+H:3:50-5:26 Mon: session3 - still work on task1 <br>
+
+# Referrences 
+> Officail Source: <br>
+> 1. Pandas document: https://pandas.pydata.org/docs/user_guide/10min.html#basic-data-structures-in-pandasn <br>
+> 2. Python HTTP client documentation: https://docs.python.org/3/library/http.client.html <br>
+> 3. 
+> Non-Officail Source: <br>
+> 1. Can I create http request in python? https://www.google.com/search?q=can+python+create+http+request&rlz=1C5CHFA_enKH1081KH1081&oq=can+python+create+http+request&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB4yDQgCEAAYhgMYgAQYigUyDQgDEAAYhgMYgAQYigUyDQgEEAAYhgMYgAQYigUyCggFEAAYgAQYogQyBwgGEAAY7wUyCggHEAAYgAQYogQyCggIEAAYogQYiQXSAQkyMDQ1NGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8 <br>
+> 2. 

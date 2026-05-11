@@ -16,3 +16,6 @@
     your function must: load and clean the data,
     classify the sentiment of each review using the Hugging Face API, 
     and return a summary report as a dictionary."""
+import pandas
+import requests
+import time

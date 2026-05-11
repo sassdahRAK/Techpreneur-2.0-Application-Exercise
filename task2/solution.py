@@ -14,3 +14,6 @@
     the Hugging Face Inference API. Use the public 
     distilbert-base-uncased-finetuned-sst-2-english model.
     Each label must be one of: POSITIVE, NEGATIVE."""
+
+import requests
+import time
