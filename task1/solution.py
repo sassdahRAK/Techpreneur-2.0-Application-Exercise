@@ -20,8 +20,6 @@
 
 import pandas as pd
 import numpy as np
-import math
-import csv
 
 import os
 sales = os.path.join(os.path.dirname(__file__), "sales.csv")
@@ -33,16 +31,20 @@ def loadFromFile(path):
     """getter method: to get everything from file"""
     try:
         data_frame = pd.read_csv(path)
+        if data_frame.empty: 
+            print("file empty")
+            return None
+
         print("data load sucess fully")
         print(data_frame.head())
         return data_frame
-    except FileNotFoundError:
-        print("error file not found")
+    except (FileNotFoundError,ValueError) as e :
+        print(f"error file not found: {e}")
         return None
 
 def saveToFile(data, path):
     """setter method: to save everything to file"""
-    if(not data): print("no data to write"); return
+    if (not data): print("no data to write"); return
     data_frame = pd.DataFrame(data)
     try:
         data_frame.to_csv(path, index = False) 
@@ -63,18 +65,24 @@ class Text(Analyst):
 
     # constructor
     def __init__(self):
-        pass
+        self.__data_frame = None
 
     # Method
     def readData(self, path):
         self.__data_frame = loadFromFile(path)
 
-    def analyzeData(self):
-        #to create new key month and revenue
+        if self.__data_frame is None: return 
+
         self.__data_frame['date'] = pd.to_datetime(self.__data_frame['date'])
+
+        #to create new key month and revenue
         self.__data_frame['month'] = self.__data_frame['date'].dt.month_name()
         self.__data_frame['revenue'] = self.__data_frame['units_sold'] * self.__data_frame['unit_price']
         print(self.__data_frame)
+
+    def analyzeData(self, path):
+        self.readData(path)
+        if self.__data_frame is None: return 
 
         # group key in one category
         grouped = self.__data_frame.groupby('category').agg(
@@ -88,25 +96,36 @@ class Text(Analyst):
         for category, row in grouped.iterrows():
             self.__data_list[category] = {
                 'total_units_sold': int(row['total_units_sold']),
-                'total_revenue': round(row['total_revenue'], 2),
-                'avg_unit_price': round(row['avg_unit_price'], 2)
-                # 'best_month': best_months[category]
+                'total_revenue': float(round(row['total_revenue'], 2)),
+                'avg_unit_price': float(round(row['avg_unit_price'], 2)),
+                'best_month': self.bestMonth(category)
             }
             print(self.__data_list)
 
+        return self.__data_list
+
     def saveData(self, path) -> dict:
         saveToFile(self.__data_list, path)
-        return None
+        return self.__data_list
 
-    def bestMonth(self ):
-        grouped = self.__data_frame.groupby('month').agg(
-            total_revenue = ('revenue', 'sum')
+    def bestMonth(self, category):
+        if self.__data_frame is None: return
+
+        filtered = self.__data_frame[self.__data_frame['category'] == category]
+
+        if filtered.empty:
+            print(f"No data found '{category}' ")
+            return None
+
+        grouped = filtered.groupby('month').agg(
+            total_revenue = ('revenue', 'sum') 
         ).round(2)
 
         best_month = grouped['total_revenue'].idxmax()
-        best_revenue
+        best_revenue = float(grouped['total_revenue'].max())
 
-        print(self.__data_frame['best_months'])
+        print(f"Best month for {category}: {best_month} with revenue ${best_revenue}")
+        return best_month
 
     def viewData(self):
         print(self.__data_list)
@@ -117,8 +136,15 @@ if __name__ == '__main__':
     # df = loadFromFile(sales);
     # print(type(df))
     Analyst = Text()
-    Analyst.readData(sales)
-    Analyst.analyzeData()
-    Analyst.saveData(store)
-    Analyst.bestMonth()
+    # Analyst.readData(sales)
+    Analyst.analyzeData(sales)
+    # Analyst.saveData(store)
+    Analyst.bestMonth('Electronics')
+    Analyst.viewData()
 
+
+'========================= Export function =========================='''
+def analyze_sale(path):
+    '''Export: read data from file .csv then analyze in class text() and return dict.'''
+    Analyst = Text()
+    return Analyst.analyzeData(path)

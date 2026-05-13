@@ -40,6 +40,8 @@ H:2:20-3:12 Sun: session1 - organize file structure. <br>
 H:8:27-8:35 Mon: session2 - start work on task1 <br>
 H:3:50-5:26 Mon: session3 - still work on task1 <br>
 H:4:10-7:13 Tue: session4 - still work on task1 <br>
+H:8:43-9:10 Wed: session5 - still work on task1 <br>
+H:4:30-5:16 Wed: session6 - commplete task1 <br>
 
 # Referrences 
 > Officail Source: <br>
